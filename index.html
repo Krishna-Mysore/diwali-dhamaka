@@ -1,0 +1,2855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deepavali Dhamaka – Diwali Party Trivia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#1a0b2e; --night2:#2d0f3a; --maroon:#5c0f2e;
+  --gold:#ffc94a; --marigold:#ff8c1a; --saffron:#ff6a00;
+  --cream:#fff6e5; --muted:#d9c7e8; --green:#2ecc71; --red:#ff4d5e;
+  --card:rgba(255,255,255,.07); --line:rgba(255,201,74,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:'Poppins',system-ui,sans-serif;color:var(--cream);
+  background:radial-gradient(ellipse at 50% 120%,#7a1d3c 0%,var(--night2) 40%,var(--night) 75%) fixed;
+  overflow-x:hidden;
+}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:16px 16px 60px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0 14px}
+.brand{font-family:'Rozha One',serif;font-size:1.4rem;color:var(--gold);display:flex;align-items:center;gap:8px}
+.hbtns{display:flex;gap:8px}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:8px 14px;font:600 .85rem 'Poppins';cursor:pointer;transition:.2s}
+.chip:hover{background:rgba(255,201,74,.15)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;backdrop-filter:blur(6px);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.hidden{display:none!important}
+h1{font-family:'Rozha One',serif;font-size:clamp(2.2rem,7vw,3.4rem);line-height:1.05;text-align:center;
+  background:linear-gradient(180deg,#fff2b3,var(--gold) 45%,var(--marigold));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 18px rgba(255,170,40,.45))}
+.greet{text-align:center;color:var(--marigold);letter-spacing:.25em;text-transform:uppercase;font-size:.78rem;font-weight:600;margin-bottom:6px}
+.tag{text-align:center;color:var(--muted);margin:10px auto 22px;max-width:480px}
+/* diya row hero */
+.diyas{display:flex;justify-content:center;gap:18px;margin:4px 0 16px}
+.diya{width:46px;height:56px;position:relative}
+.diya .flame{position:absolute;left:50%;top:2px;width:14px;height:24px;margin-left:-7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 50% 70%,#fff 0 18%,#ffe066 35%,var(--marigold) 70%,transparent 72%);
+  animation:flick 1.2s infinite alternate ease-in-out;transform-origin:50% 100%;filter:drop-shadow(0 0 10px #ffb02e)}
+.diya .bowl{position:absolute;bottom:0;left:0;right:0;height:26px;border-radius:0 0 50% 50%/0 0 100% 100%;
+  background:linear-gradient(180deg,#e0702a,#9c3a12);box-shadow:inset 0 4px 0 #ffb347}
+.diya:nth-child(2) .flame{animation-delay:.3s}.diya:nth-child(3) .flame{animation-delay:.6s}.diya:nth-child(4) .flame{animation-delay:.15s}.diya:nth-child(5) .flame{animation-delay:.45s}
+@keyframes flick{0%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.05,.95) rotate(-1deg)}}
+label.lbl{display:block;font-weight:600;margin:6px 0 8px;color:var(--gold)}
+input[type=text]{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--cream);font:500 1rem 'Poppins';outline:none}
+input[type=text]:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,201,74,.2)}
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.lvl{background:rgba(0,0,0,.22);border:2px solid transparent;border-radius:16px;padding:14px 8px;text-align:center;cursor:pointer;color:var(--cream);font-family:'Poppins';transition:.2s}
+.lvl .e{font-size:1.9rem;display:block}.lvl b{display:block;margin-top:4px}.lvl small{color:var(--muted)}
+.lvl.sel{border-color:var(--gold);background:rgba(255,201,74,.12);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,170,40,.25)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:16px;padding:15px 22px;font:700 1.05rem 'Poppins';cursor:pointer;transition:.15s}
+.btn-main{width:100%;margin-top:20px;color:#3a1200;background:linear-gradient(180deg,#ffe07a,var(--marigold));box-shadow:0 6px 0 #a34a00,0 10px 30px rgba(255,140,26,.4)}
+.btn-main:active{transform:translateY(4px);box-shadow:0 2px 0 #a34a00}
+.btn-main:disabled{opacity:.5;cursor:not-allowed}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--cream)}
+.rules{margin-top:22px;padding:16px 18px;border-radius:16px;background:rgba(0,0,0,.2);font-size:.9rem;color:var(--muted)}
+.rules h3{color:var(--gold);font-size:.95rem;margin-bottom:8px}
+.rules li{margin:5px 0 5px 18px}
+.err{color:var(--red);font-size:.85rem;margin-top:6px;min-height:1em}
+/* quiz */
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.pill{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600}
+.pill.gold{color:var(--gold)}
+.track{display:flex;gap:4px;margin-bottom:18px}
+.dot{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.12);transition:.3s}
+.dot.ok{background:var(--gold);box-shadow:0 0 8px var(--gold)}.dot.half{background:linear-gradient(90deg,var(--gold) 50%,rgba(255,255,255,.2) 50%)}
+.dot.bad{background:var(--red)}.dot.cur{background:#fff;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.cat{display:inline-block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marigold);font-weight:700;margin-bottom:8px}
+.qtext{font-size:clamp(1.15rem,3.6vw,1.45rem);font-weight:600;line-height:1.4;margin-bottom:18px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.08);color:var(--cream);border-radius:14px;padding:14px 16px;font:500 1rem 'Poppins';cursor:pointer;transition:.15s;display:flex;gap:12px;align-items:center}
+.opt:hover:not(:disabled){border-color:var(--gold);background:rgba(255,201,74,.08)}
+.opt .k{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,201,74,.15);color:var(--gold);font-weight:700}
+.opt.right{border-color:var(--green);background:rgba(46,204,113,.18)}
+.opt.wrong{border-color:var(--red);background:rgba(255,77,94,.18);animation:shake .4s}
+.opt:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.hintbox{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,201,74,.1);border:1px dashed var(--gold);color:#ffe7a8;font-size:.92rem}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.fact{margin-top:16px;padding:14px 16px;border-radius:14px;font-size:.93rem;line-height:1.5}
+.fact.good{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.4)}
+.fact.bad{background:rgba(255,77,94,.1);border:1px solid rgba(255,77,94,.4)}
+.fact b{display:block;margin-bottom:4px;font-size:1rem}
+.streak{position:fixed;left:50%;top:22%;transform:translate(-50%,0) scale(.5);opacity:0;z-index:20;font-family:'Rozha One';font-size:clamp(1.8rem,7vw,3rem);color:var(--gold);text-shadow:0 0 20px var(--marigold);pointer-events:none;white-space:nowrap}
+.streak.show{animation:pop 1.3s ease-out}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,0) scale(.5)}20%{opacity:1;transform:translate(-50%,0) scale(1.15)}70%{opacity:1;transform:translate(-50%,-10px) scale(1)}100%{opacity:0;transform:translate(-50%,-40px) scale(1)}}
+/* bumper */
+.center{text-align:center}
+.big{font-family:'Rozha One';font-size:clamp(2rem,7vw,3rem);color:var(--gold)}
+.bomb{font-size:4rem;display:inline-block;animation:wobble 1.2s infinite}
+@keyframes wobble{25%{transform:rotate(-10deg) scale(1.05)}75%{transform:rotate(10deg) scale(1.05)}}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.stakes{display:flex;justify-content:center;gap:12px;margin:14px 0}
+.stakes div{padding:10px 16px;border-radius:12px;font-weight:700}
+.stakes .p{background:rgba(46,204,113,.18);color:#8ff0b6}.stakes .m{background:rgba(255,77,94,.18);color:#ffa3ad}
+.bumper-card{border-color:var(--marigold);box-shadow:0 0 40px rgba(255,106,0,.35)}
+/* results */
+.score-big{font-family:'Rozha One';font-size:clamp(3.5rem,14vw,5.5rem);line-height:1;color:var(--gold);text-shadow:0 0 30px var(--marigold)}
+.title-won{font-size:1.3rem;font-weight:700;margin:6px 0 4px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.stats div{background:rgba(0,0,0,.22);border-radius:14px;padding:12px 6px}
+.stats b{display:block;font-size:1.3rem;color:var(--gold)}.stats small{color:var(--muted)}
+/* leaderboard */
+.modal{position:fixed;inset:0;background:rgba(10,3,20,.75);z-index:30;display:flex;align-items:flex-start;justify-content:center;padding:40px 14px;overflow:auto}
+.modal .card{width:100%;max-width:560px;background:linear-gradient(180deg,#2d0f3a,#1a0b2e)}
+.tabs{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.tab{flex:1;min-width:70px;padding:8px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--cream);font:600 .82rem 'Poppins';cursor:pointer}
+.tab.on{background:var(--gold);color:#3a1200;border-color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;padding:8px 6px;border-bottom:1px solid var(--line)}
+td{padding:10px 6px;border-bottom:1px solid rgba(255,255,255,.06)}
+td.r{font-weight:700;color:var(--gold);width:36px}
+td.s{font-weight:700;text-align:right}
+tr.me td{background:rgba(255,201,74,.12)}
+.empty{text-align:center;color:var(--muted);padding:26px 0}
+.note{font-size:.78rem;color:var(--muted);margin-top:12px;text-align:center}
+.x{background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer;line-height:1}
+.fade{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qrbox{background:#fff;border-radius:16px;padding:14px;margin:16px auto 8px;width:fit-content}
+.qrbox svg{display:block;width:240px;height:240px}
+#tv{position:relative;z-index:1;padding:24px 3vw}
+.tvhead{text-align:center;margin-bottom:20px}
+.tvgrid{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;max-width:1400px;margin:0 auto}
+#tv table{font-size:clamp(1rem,1.6vw,1.6rem)}#tv td{padding:12px 8px}
+#tv .qrbox svg{width:min(26vw,320px);height:min(26vw,320px)}
+@media(max-width:800px){.tvgrid{grid-template-columns:1fr}}
+@media(max-width:480px){.card{padding:18px}.lvl .e{font-size:1.5rem}.lvl small{font-size:.7rem}}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="streak" id="streak"></div>
+
+<div class="wrap">
+  <header>
+    <div class="brand">🪔 Dhamaka</div>
+    <div class="hbtns">
+      <button class="chip" id="muteBtn" title="Sound on/off">🔊</button>
+      <button class="chip" id="qrBtn" title="Show QR code to join">📱</button>
+      <button class="chip" id="lbBtn">🏆 Leaderboard</button>
+    </div>
+  </header>
+
+  <!-- START -->
+  <section id="start" class="card fade">
+    <div class="diyas"><div class="diya"><div class="flame"></div><div class="bowl"></div></div><div class="diya"><div class="flame"></div><div class="bowl"></div></div><div class="diya"><div class="flame"></div><div class="bowl"></div></div><div class="diya"><div class="flame"></div><div class="bowl"></div></div><div class="diya"><div class="flame"></div><div class="bowl"></div></div></div>
+    <div class="greet">Shubh Deepavali</div>
+    <h1>Deepavali Dhamaka</h1>
+    <p class="tag">20 questions on traditions, legends and mithai from every corner of India – from Ayodhya to Goa, Kolkata to Madurai.</p>
+
+    <label class="lbl" for="name">Your name</label>
+    <input type="text" id="name" maxlength="24" placeholder="e.g. Priya, Arjun, Masi-ji…" autocomplete="off">
+    <div class="err" id="nameErr"></div>
+
+    <label class="lbl">Pick your patakha</label>
+    <div class="levels">
+      <button class="lvl sel" data-l="easy"><span class="e">✨</span><b>Phuljhadi</b><small>Easy</small></button>
+      <button class="lvl" data-l="medium"><span class="e">🎇</span><b>Anaar</b><small>Medium</small></button>
+      <button class="lvl" data-l="hard"><span class="e">🚀</span><b>Rocket</b><small>Hard</small></button>
+    </div>
+
+    <button class="btn btn-main" id="goBtn">🪔 Light it up!</button>
+
+    <div class="rules">
+      <h3>House rules</h3>
+      <ul>
+        <li>20 questions. Correct answer = <b>1 point</b>.</li>
+        <li>You get <b>one hint</b> per game. A correct answer with the hint earns <b>½ point</b>.</li>
+        <li>After Q20, dare the <b>Bumper Bomb</b>: right = <b>+5</b>, wrong = <b>−2</b>. Or play it safe.</li>
+        <li>Answer 3 in a row for a streak celebration 🎆</li>
+        <li>Check the party leaderboard any time from the top-right.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="card hidden">
+    <div class="qtop">
+      <span class="pill" id="qNum">Q 1/20</span>
+      <span class="pill" id="lvlPill">✨ Phuljhadi</span>
+      <span class="pill gold" id="scorePill">⭐ 0</span>
+    </div>
+    <div class="track" id="track"></div>
+    <div id="qBody" class="fade">
+      <span class="cat" id="qCat"></span>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="opts"></div>
+      <div class="hintbox hidden" id="hintBox"></div>
+      <div id="factBox"></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-ghost" id="hintBtn">💡 Use hint (1 left)</button>
+      <button class="btn btn-main hidden" id="nextBtn" style="width:auto;margin:0">Next ➜</button>
+    </div>
+  </section>
+
+  <!-- BUMPER OFFER -->
+  <section id="offer" class="card bumper-card center hidden">
+    <div class="bomb">💣</div>
+    <div class="big">Bumper Bomb!</div>
+    <p class="tag" style="margin-bottom:6px">You scored <b id="offerScore">0</b> out of 20. One last question – harder than anything so far. Feeling lucky?</p>
+    <div class="stakes"><div class="p">Right: +5</div><div class="m">Wrong: −2</div></div>
+    <div class="row2">
+      <button class="btn btn-ghost" id="skipBtn">🙏 Play it safe</button>
+      <button class="btn btn-main" id="takeBtn" style="margin:0">🔥 Light the fuse!</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="card center hidden">
+    <div class="greet">Final score</div>
+    <div class="score-big" id="finalScore">0</div>
+    <div class="title-won" id="finalTitle"></div>
+    <p class="tag" id="finalMsg" style="margin:6px auto 0"></p>
+    <div class="stats">
+      <div><b id="stCorrect">0</b><small>Correct</small></div>
+      <div><b id="stStreak">0</b><small>Best streak</small></div>
+      <div><b id="stBumper">–</b><small>Bumper</small></div>
+    </div>
+    <div class="row2">
+      <button class="btn btn-ghost" id="lbBtn2">🏆 Leaderboard</button>
+      <button class="btn btn-main" id="againBtn" style="margin:0">🎇 Play again</button>
+    </div>
+  </section>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="modal hidden" id="lbModal">
+  <div class="card fade">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="brand">🏆 Party Leaderboard</div>
+      <button class="x" id="lbClose" aria-label="Close">×</button>
+    </div>
+    <div class="tabs" id="lbTabs">
+      <button class="tab on" data-f="all">All</button>
+      <button class="tab" data-f="easy">✨ Easy</button>
+      <button class="tab" data-f="medium">🎇 Medium</button>
+      <button class="tab" data-f="hard">🚀 Hard</button>
+    </div>
+    <div id="lbBody"></div>
+    <div class="note" id="lbNote"></div>
+  </div>
+</div>
+
+<!-- QR -->
+<div class="modal hidden" id="qrModal">
+  <div class="card fade center" style="max-width:420px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="brand">📱 Scan to play</div>
+      <button class="x" id="qrClose" aria-label="Close">×</button>
+    </div>
+    <div class="qrbox" id="qrBox"></div>
+    <div class="note" id="qrUrl" style="word-break:break-all"></div>
+    <div class="note">Tip: open <b>this page + #board</b> on the TV for a big-screen live leaderboard.</div>
+  </div>
+</div>
+
+<!-- TV BOARD -->
+<div id="tv" class="hidden">
+  <div class="tvwrap">
+    <div class="tvhead"><div class="greet">Shubh Deepavali</div><h1>Deepavali Dhamaka · Leaderboard</h1></div>
+    <div class="tvgrid">
+      <div class="card"><div id="tvBody"></div><div class="note" id="tvNote"></div></div>
+      <div class="card center"><div class="brand" style="justify-content:center">📱 Scan to play</div><div class="qrbox" id="tvQr"></div><div class="note">No login needed</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* qrcode-generator 1.4.4 (MIT, Kazuhiko Arase) */
+//---------------------------------------------------------------------
+//
+// QR Code Generator for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//  http://www.opensource.org/licenses/mit-license.php
+//
+// The word 'QR Code' is registered trademark of
+// DENSO WAVE INCORPORATED
+//  http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+
+var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+}();
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+      define([], factory);
+  } else if (typeof exports === 'object') {
+      module.exports = factory();
+  }
+}(function () {
+    return qrcode;
+}));
+
+</script>
+<script>
+/* ================= QUESTIONS ================= */
+const Q = {
+easy:[
+ {c:"Significance",q:"Diwali is popularly known as the festival of…?",o:["Lights","Colours","Kites","Harvest"],a:0,h:"Think of rows of glowing diyas.",f:"‘Deepavali’ comes from Sanskrit: deepa (lamp) + avali (row) – literally a ‘row of lamps’."},
+ {c:"Traditions",q:"What are the small clay oil lamps lit on Diwali called?",o:["Kalash","Diya","Matka","Kulhad"],a:1,h:"Also called ‘deepam’ in the South.",f:"Diyas are usually filled with ghee or mustard oil and a cotton wick."},
+ {c:"Legends",q:"Which goddess of wealth and prosperity is worshipped on Diwali night?",o:["Saraswati","Durga","Lakshmi","Parvati"],a:2,h:"She sits on a lotus and showers gold coins.",f:"Homes are cleaned and doors left open so Lakshmi can find her way in."},
+ {c:"Legends",q:"Lord Rama's return to which city is celebrated on Diwali?",o:["Mathura","Ayodhya","Dwarka","Kashi"],a:1,h:"It's on the banks of the Sarayu river.",f:"The people of Ayodhya lit rows of lamps to welcome Rama, Sita and Lakshmana home."},
+ {c:"Legends",q:"How many years of exile did Lord Rama complete before returning home?",o:["10","12","14","16"],a:2,h:"Two lots of seven.",f:"Rama spent 14 years in exile, as Kaikeyi had asked of King Dasharatha."},
+ {c:"Customs",q:"What are the colourful patterns made at the entrance of homes called?",o:["Mehndi","Rangoli","Madhubani","Warli"],a:1,h:"Made with coloured powder, rice or flower petals.",f:"Rangoli is believed to welcome guests and the goddess Lakshmi."},
+ {c:"Legends",q:"Which god is worshipped alongside Lakshmi on Diwali for wisdom and new beginnings?",o:["Ganesha","Hanuman","Shiva","Indra"],a:0,h:"He's the remover of obstacles.",f:"Lakshmi–Ganesh idols or coins are often bought fresh each Diwali."},
+ {c:"Significance",q:"Diwali night (Lakshmi Puja) falls on which phase of the moon?",o:["Full moon","Half moon","New moon","Crescent moon"],a:2,h:"The darkest night of the month.",f:"It falls on Amavasya – the darkest night, which is why the lamps matter so much."},
+ {c:"Customs",q:"On which day of the Diwali festival is it lucky to buy gold, silver or new utensils?",o:["Bhai Dooj","Dhanteras","Govardhan Puja","Chhoti Diwali"],a:1,h:"‘Dhan’ means wealth.",f:"Dhanteras opens the five-day festival – jewellers have their busiest day of the year."},
+ {c:"Customs",q:"Bhai Dooj celebrates the bond between…?",o:["Husband and wife","Brothers and sisters","Teachers and students","Friends"],a:1,h:"Similar spirit to Raksha Bandhan.",f:"Sisters apply tilak on brothers' foreheads and pray for their long life."},
+ {c:"Sweets",q:"Which round sweet, made from besan or boondi, is a Diwali favourite everywhere?",o:["Jalebi","Laddoo","Rasgulla","Peda"],a:1,h:"Ganesha's favourite too!",f:"Motichoor, besan, rava, coconut – India has dozens of laddoo varieties."},
+ {c:"Legends",q:"Who returned to Ayodhya with Rama after the exile?",o:["Radha","Sita","Draupadi","Rukmini"],a:1,h:"She was rescued from Lanka.",f:"Sita was the princess of Mithila, daughter of King Janaka."},
+ {c:"Legends",q:"Which ten-headed demon king did Rama defeat?",o:["Kansa","Ravana","Mahishasura","Hiranyakashipu"],a:1,h:"King of Lanka.",f:"Ravana's defeat is marked on Dussehra, about 20 days before Diwali."},
+ {c:"Fun",q:"What is a ‘phuljhadi’?",o:["A ground spinner","A sparkler","A flower pot","A rocket"],a:1,h:"You hold it in your hand and draw circles!",f:"Phuljhadi means ‘flower shower’ – the sparks look like falling petals."},
+ {c:"Legends",q:"Which brother accompanied Rama throughout his exile?",o:["Bharata","Shatrughna","Lakshmana","Hanuman"],a:2,h:"He drew a famous ‘rekha’.",f:"Lakshmana left the palace to serve Rama and Sita for all 14 years."},
+ {c:"Sweets",q:"Kaju katli is mainly made from which nut?",o:["Almond","Pistachio","Cashew","Walnut"],a:2,h:"‘Kaju’ is the Hindi word for it.",f:"The silver foil (vark) on top is edible!"},
+ {c:"Legends",q:"On Govardhan Puja, which hill did Krishna lift to shelter people from Indra's rain?",o:["Kailash","Govardhan","Mandara","Arunachala"],a:1,h:"The day is named after it.",f:"Krishna held the hill on his little finger for seven days, as the story goes."},
+ {c:"Customs",q:"Which flower is most commonly strung into Diwali garlands and torans?",o:["Rose","Lotus","Marigold","Jasmine"],a:2,h:"Bright orange and yellow – called ‘genda’.",f:"Marigold torans on doorways are believed to bring good fortune."},
+ {c:"Across India",q:"Sikhs celebrate Bandi Chhor Divas at Diwali. Which city's Golden Temple is lit up?",o:["Patiala","Ludhiana","Amritsar","Chandigarh"],a:2,h:"Home of Harmandir Sahib.",f:"The Golden Temple glows with thousands of lamps and fireworks on Bandi Chhor Divas."},
+ {c:"Significance",q:"How many days does the main Diwali festival usually last?",o:["1","3","5","9"],a:2,h:"Dhanteras to Bhai Dooj.",f:"Dhanteras, Chhoti Diwali, Lakshmi Puja, Govardhan Puja/Padwa and Bhai Dooj."}
+],
+medium:[
+ {c:"Legends",q:"Naraka Chaturdashi celebrates Krishna and Satyabhama's victory over which demon?",o:["Narakasura","Kumbhakarna","Bakasura","Shishupala"],a:0,h:"The day is named after him.",f:"Narakasura held 16,000 women captive before Krishna and Satyabhama defeated him."},
+ {c:"Across India",q:"For Jains, Diwali marks the nirvana (moksha) of which Tirthankara?",o:["Rishabhanatha","Parshvanatha","Mahavira","Neminatha"],a:2,h:"The 24th and last Tirthankara.",f:"Lamps were lit because ‘the light of knowledge had gone out’ when Mahavira attained nirvana."},
+ {c:"Across India",q:"Bandi Chhor Divas marks the release of which Sikh Guru from Gwalior Fort?",o:["Guru Nanak","Guru Hargobind","Guru Gobind Singh","Guru Arjan"],a:1,h:"The sixth Guru.",f:"Guru Hargobind returned to Amritsar on Diwali, and the city lit lamps to welcome him."},
+ {c:"Across India",q:"In West Bengal, Odisha and Assam, which goddess is worshipped on Diwali night?",o:["Lakshmi","Kali","Durga","Saraswati"],a:1,h:"Fierce goddess with a garland of skulls.",f:"Kali Puja falls on the same Amavasya night as Lakshmi Puja elsewhere."},
+ {c:"Legends",q:"Goddess Lakshmi is said to have emerged during which event?",o:["Samudra Manthan","Kurukshetra war","Ganga's descent","Tripura's destruction"],a:0,h:"Devas and asuras churned something huge.",f:"She rose from the churning of the cosmic ocean, along with amrit and other treasures."},
+ {c:"Customs",q:"Dhanteras also honours which god of Ayurveda and health?",o:["Ashwini Kumaras","Dhanvantari","Kubera","Agni"],a:1,h:"He emerged carrying a pot of amrit.",f:"Since 2016 India marks Dhanteras as National Ayurveda Day."},
+ {c:"Sweets",q:"Mysore Pak, a rich ghee-and-besan sweet, comes from which state?",o:["Tamil Nadu","Kerala","Karnataka","Andhra Pradesh"],a:2,h:"Named after a royal city.",f:"It's said to have been created in the Mysore Palace kitchens for the Wadiyar king."},
+ {c:"Across India",q:"In Gujarat, the day after Diwali is the New Year. What is it called?",o:["Bestu Varas","Gudi Padwa","Ugadi","Puthandu"],a:0,h:"Greetings of ‘Saal Mubarak’ fly around.",f:"Gujaratis greet each other with ‘Nutan Varshabhinandan’ and ‘Saal Mubarak’."},
+ {c:"Sweets",q:"In Maharashtra, the platter of Diwali snacks and sweets is called…?",o:["Thali","Faral","Mithas","Nashta"],a:1,h:"Includes chakli, chivda, karanji, shankarpali.",f:"Families exchange faral plates with neighbours through the Diwali week."},
+ {c:"Legends",q:"Bali Pratipada (Padwa) celebrates which king's annual return to earth?",o:["Mahabali","Harishchandra","Vikramaditya","Janaka"],a:0,h:"Kerala welcomes him at Onam too.",f:"The generous asura king Bali was granted one visit a year to his people."},
+ {c:"Customs",q:"Traders in Gujarat and Rajasthan worship new account books on Diwali. What is this called?",o:["Ayudha Puja","Vishwakarma Puja","Chopda Pujan","Saraswati Avahan"],a:2,h:"‘Chopda’ = ledger.",f:"New red bahi-khata ledgers are marked with ‘Shubh Labh’ and a swastika."},
+ {c:"Sweets",q:"Gujiya in North India is known by what name in Maharashtra?",o:["Chakli","Karanji","Anarsa","Shankarpali"],a:1,h:"Crescent-shaped and stuffed with coconut.",f:"It's ‘kajjikayalu’ in Andhra and ‘neureos’ in Goa – same idea, different names."},
+ {c:"Across India",q:"How does Deepavali morning traditionally begin in Tamil Nadu?",o:["Kite flying","An oil bath before sunrise","A boat race","A bonfire"],a:1,h:"Asked at home: ‘Ganga snanam aacha?’",f:"Bathing before dawn with oil is considered as holy as a dip in the Ganga."},
+ {c:"Across India",q:"In Tamil homes, what is ‘Deepavali Lehiyam’ (marundhu)?",o:["A sweet rice","A herbal digestive paste","A firecracker","A lamp oil"],a:1,h:"Taken after all the heavy sweets!",f:"It's made with ginger, pepper, ajwain, jaggery and ghee to help digestion."},
+ {c:"Customs",q:"Star-shaped paper lanterns called ‘akash kandil’ are a Diwali icon in which state?",o:["Maharashtra","Punjab","Bihar","Kerala"],a:0,h:"‘Akash’ means sky.",f:"Kandils hang from balconies all across Mumbai and Pune."},
+ {c:"Across India",q:"In Goa, giant effigies of which demon are burnt before dawn on Narak Chaturdashi?",o:["Ravana","Narakasura","Mahishasura","Holika"],a:1,h:"Krishna defeated him.",f:"Goan neighbourhoods compete to build the scariest Narkasur effigy."},
+ {c:"Across India",q:"On Bhoot Chaturdashi in Bengal, families light 14 lamps. Who are they said to honour?",o:["14 gods","14 generations of ancestors","14 rivers","14 planets"],a:1,h:"‘Bhoot’ hints at spirits of the past.",f:"People also eat ‘choddo shaak’ – 14 kinds of leafy greens."},
+ {c:"Fun",q:"Which game is traditionally played on Diwali night, after a legend of Shiva and Parvati?",o:["Chess","Dice / cards","Kabaddi","Kho-kho"],a:1,h:"Parvati is said to have won a round against Shiva.",f:"Playing on Diwali night is believed to bring prosperity through the year."},
+ {c:"Legends",q:"In the Ramayana, who flew ahead to tell Bharata that Rama was returning?",o:["Jatayu","Hanuman","Sugriva","Angada"],a:1,h:"Son of the wind god.",f:"Bharata had vowed to end his life if Rama didn't return on time."},
+ {c:"Customs",q:"Rangoli is called ‘kolam’ in which state?",o:["West Bengal","Rajasthan","Tamil Nadu","Bihar"],a:2,h:"Traditionally drawn with rice flour.",f:"Alpana (Bengal), mandana (Rajasthan) and aripan (Bihar) are cousins of kolam."}
+],
+hard:[
+ {c:"Across India",q:"Pavapuri, where Mahavira attained nirvana on Diwali, is in which state?",o:["Rajasthan","Gujarat","Bihar","Madhya Pradesh"],a:2,h:"Near Nalanda.",f:"The Jal Mandir at Pavapuri sits in a lotus-filled tank."},
+ {c:"History",q:"Which founder of the Arya Samaj passed away on Diwali in 1883?",o:["Raja Ram Mohan Roy","Swami Dayananda Saraswati","Swami Vivekananda","Ishwar Chandra Vidyasagar"],a:1,h:"Author of ‘Satyarth Prakash’.",f:"Arya Samajis remember him every Diwali as ‘Rishi Nirvan Diwas’."},
+ {c:"Across India",q:"According to Sikh tradition, Guru Hargobind secured the release of how many kings with him?",o:["12","32","52","108"],a:2,h:"He wore a cloak with as many tassels.",f:"Each king held a tassel of the Guru's special cloak to walk out with him."},
+ {c:"Across India",q:"Gujarat's new year after Diwali begins which calendar era?",o:["Shaka Samvat","Vikram Samvat","Kali Yuga era","Kollam era"],a:1,h:"Named after a legendary king of Ujjain.",f:"Vikram Samvat runs about 57 years ahead of the Gregorian calendar."},
+ {c:"Sweets",q:"Anarsa, a Maharashtrian Diwali sweet, is made mainly from which soaked and dried grain?",o:["Wheat","Rice","Millet","Barley"],a:1,h:"Coated with poppy seeds.",f:"The rice is soaked for three days – making anarsa is a real labour of love."},
+ {c:"Across India",q:"In which state do families burn jute sticks (kaunria kathi) on Diwali to guide their ancestors?",o:["Odisha","Assam","Punjab","Karnataka"],a:0,h:"Land of Jagannath.",f:"Families call out to ancestors to come down in the dark and go back in the light."},
+ {c:"Across India",q:"‘Budhi Diwali’, celebrated a month after the main Diwali, is a tradition of which state?",o:["Sikkim","Himachal Pradesh","Kerala","Tripura"],a:1,h:"In hill villages like those of Sirmaur and Kullu.",f:"Legend says news of Rama's return reached these remote hills a month late!"},
+ {c:"Across India",q:"Sohrai, a harvest festival with wall paintings held around Diwali, belongs mainly to which state?",o:["Jharkhand","Gujarat","Goa","Punjab"],a:0,h:"Famous around Hazaribagh.",f:"Sohrai art was granted a GI tag in 2020."},
+ {c:"Across India",q:"In Tihar, celebrated in Sikkim and Darjeeling, one day honours which animal with garlands and tika?",o:["Elephants","Dogs","Peacocks","Horses"],a:1,h:"Man's best friend.",f:"‘Kukur Tihar’ honours dogs as messengers of Yama."},
+ {c:"Legends",q:"What is Goddess Lakshmi's vahana (mount)?",o:["Swan","Peacock","Owl","Lion"],a:2,h:"It sees in the dark.",f:"The owl (Uluka) is a reason some call Diwali night auspicious for staying awake."},
+ {c:"Sweets",q:"Goan Diwali mornings feature dishes called ‘fov’. What are they made from?",o:["Semolina","Beaten rice (poha)","Rice noodles","Coconut flakes"],a:1,h:"It's flattened.",f:"Goans make several fov varieties – with jaggery, coconut milk, curd and more."},
+ {c:"Significance",q:"Dhanteras falls on which lunar day?",o:["Ekadashi","Dwadashi","Trayodashi","Chaturdashi"],a:2,h:"‘Teras’ means thirteen.",f:"It's the 13th day of the waning moon in Kartik (Ashvin in some calendars)."},
+ {c:"Legends",q:"In Kali Puja imagery, the goddess Kali is shown standing on which deity?",o:["Vishnu","Brahma","Shiva","Indra"],a:2,h:"Her consort.",f:"Kali's tongue sticks out in surprise on realising she has stepped on Shiva."},
+ {c:"Legends",q:"King Bali, honoured on Bali Padyami, was sent to the underworld by which avatar of Vishnu?",o:["Narasimha","Vamana","Parashurama","Varaha"],a:1,h:"He asked for just three steps of land.",f:"The dwarf Vamana covered earth and sky in two steps and placed the third on Bali's head."},
+ {c:"Sweets",q:"Adhirasam, a Tamil Deepavali sweet, is made of rice flour and what?",o:["Sugar","Jaggery","Honey","Condensed milk"],a:1,h:"Unrefined cane sugar.",f:"Adhirasam dough is rested for days – it's one of Tamil Nadu's oldest sweets."},
+ {c:"History",q:"Which 7th-century Sanskrit play by King Harsha mentions ‘Deepapratipadutsava’?",o:["Ratnavali","Nagananda","Priyadarshika","Abhijnanashakuntalam"],a:1,h:"It's about a hero who sacrifices himself for the snakes.",f:"It describes lamps and gifts to newly engaged couples on this festival."},
+ {c:"History",q:"Which 11th-century Persian scholar wrote about Diwali in his account of India?",o:["Ibn Battuta","Al-Biruni","Amir Khusrau","Abul Fazl"],a:1,h:"He came with Mahmud of Ghazni.",f:"His book ‘Kitab al-Hind’ describes people exchanging betel leaves and lighting lamps."},
+ {c:"Significance",q:"‘Chhoti Diwali’ is another name for which day?",o:["Dhanteras","Naraka Chaturdashi","Govardhan Puja","Bhai Dooj"],a:1,h:"It's the day just before the main Diwali.",f:"In South India, this is actually the main Deepavali day."},
+ {c:"Across India",q:"Varanasi's spectacular ‘Dev Deepawali’ is celebrated on which day?",o:["Kartik Purnima","Sharad Purnima","Makar Sankranti","Vasant Panchami"],a:0,h:"Full moon, 15 days after Diwali.",f:"Over a million diyas light up the ghats – ‘the Diwali of the gods’."},
+ {c:"Customs",q:"The ‘Yam Deepam’ lamp lit on Dhanteras night faces which direction?",o:["North","East","South","West"],a:2,h:"The direction of Yama, god of death.",f:"It's lit to ward off untimely death in the family."}
+]};
+const BUMPER = [
+ {c:"💣 Bumper",q:"For Jains, Diwali night also marks the attainment of Kevala Jnana by which chief disciple of Mahavira?",o:["Sudharma Swami","Gautama Swami (Indrabhuti)","Jambu Swami","Bhadrabahu"],a:1,f:"That's why Jains call the next morning ‘Gautam Pratipada’ and start their new year."},
+ {c:"💣 Bumper",q:"The tall lamp-tower outside temples in Maharashtra and Goa, lit up during Diwali, is called a…?",o:["Gopuram","Deepastambha / Deepmal","Shikhara","Mandapa"],a:1,f:"Some deepmals in Goa have hundreds of lamp niches."},
+ {c:"💣 Bumper",q:"On Govardhan Puja, the ‘mountain of food’ offered to Krishna is called…?",o:["Chhappan Bhog","Annakut","Prasadam","Naivedyam"],a:1,f:"Annakut literally means ‘mountain of grain’ – temples offer hundreds of dishes."},
+ {c:"💣 Bumper",q:"Kubera, worshipped with Lakshmi on Dhanteras, is the king of which beings?",o:["Gandharvas","Yakshas","Nagas","Kinnaras"],a:1,f:"Kubera is the treasurer of the gods, ruling the Yakshas from Alaka."},
+ {c:"💣 Bumper",q:"Harsha's play ‘Nagananda’ calls the lamp festival ‘Deepapratipadutsava’. In which century was it written?",o:["4th century","7th century","10th century","12th century"],a:1,f:"Harsha ruled from Kannauj from 606 to 647 CE."}
+];
+const LEVELS={easy:{n:"Phuljhadi",e:"✨"},medium:{n:"Anaar",e:"🎇"},hard:{n:"Rocket",e:"🚀"}};
+
+/* ================= SOUND ================= */
+let AC=null, muted=false;
+try{muted=localStorage.getItem('dd_muted')==='1'}catch(e){}
+function ac(){ if(!AC){ try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){} } if(AC&&AC.state==='suspended')AC.resume(); return AC; }
+function tone(f,t0,d,type='sine',v=.18,slideTo){const a=ac();if(!a||muted)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,a.currentTime+t0);if(slideTo)o.frequency.exponentialRampToValueAtTime(slideTo,a.currentTime+t0+d);g.gain.setValueAtTime(0,a.currentTime+t0);g.gain.linearRampToValueAtTime(v,a.currentTime+t0+.01);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+d);o.connect(g).connect(a.destination);o.start(a.currentTime+t0);o.stop(a.currentTime+t0+d+.05)}
+function noise(t0,d,v=.3,hp=800){const a=ac();if(!a||muted)return;const len=a.sampleRate*d,b=a.createBuffer(1,len,a.sampleRate),ch=b.getChannelData(0);for(let i=0;i<len;i++)ch[i]=(Math.random()*2-1)*Math.pow(1-i/len,2);const s=a.createBufferSource();s.buffer=b;const f=a.createBiquadFilter();f.type='highpass';f.frequency.value=hp;const g=a.createGain();g.gain.value=v;s.connect(f).connect(g).connect(a.destination);s.start(a.currentTime+t0)}
+const SFX={
+ click(){tone(660,0,.06,'triangle',.08)},
+ correct(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.08,.25,'triangle',.16))},
+ wrong(){tone(220,0,.35,'sawtooth',.12,110);tone(160,.05,.35,'square',.06,90)},
+ hint(){[1200,1500,1800,2200].forEach((f,i)=>tone(f,i*.06,.3,'sine',.07))},
+ boom(){tone(500,0,.5,'sine',.1,1600);noise(.45,.9,.35,300);[0.6,.7,.8,.95].forEach(t=>noise(t,.25,.12,3000))},
+ fuse(){noise(0,1.4,.12,4000);for(let i=0;i<8;i++)tone(200+i*40,i*.15,.12,'square',.04)},
+ fanfare(){[[523,0],[659,.15],[784,.3],[1047,.45],[784,.65],[1047,.8]].forEach(([f,t])=>tone(f,t,.35,'triangle',.15));SFX.boom()},
+ sad(){[392,370,349,330].forEach((f,i)=>tone(f,i*.25,.4,'triangle',.12))}
+};
+
+/* ================= FIREWORKS CANVAS ================= */
+const cv=document.getElementById('sky'),cx=cv.getContext('2d');let W,H,parts=[],rockets=[],stars=[];
+function rs(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;stars=Array.from({length:90},()=>({x:Math.random()*W,y:Math.random()*H*.7,r:Math.random()*1.4*devicePixelRatio,t:Math.random()*6}))}
+addEventListener('resize',rs);rs();
+const COLS=['#ffc94a','#ff8c1a','#ff4d6d','#7cf5ff','#b388ff','#7dff9b','#ffffff'];
+function burst(x,y,n=70,col){const c=col||COLS[Math.random()*COLS.length|0];for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=(Math.random()*4+1.5)*devicePixelRatio;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,c:Math.random()<.2?'#fff':c})}}
+function launch(k=1){for(let i=0;i<k;i++)setTimeout(()=>rockets.push({x:W*(.15+Math.random()*.7),y:H,vy:-(9+Math.random()*4)*devicePixelRatio,ty:H*(.15+Math.random()*.3)}),i*220)}
+let ambient=0;
+(function loop(){cx.clearRect(0,0,W,H);
+ stars.forEach(s=>{s.t+=.03;cx.globalAlpha=.35+.35*Math.sin(s.t);cx.fillStyle='#fff';cx.beginPath();cx.arc(s.x,s.y,s.r,0,7);cx.fill()});
+ cx.globalAlpha=1;
+ if(++ambient%260===0)launch(1);
+ rockets=rockets.filter(r=>{r.y+=r.vy;r.vy*=.985;cx.fillStyle='#ffd27a';cx.fillRect(r.x,r.y,2*devicePixelRatio,6*devicePixelRatio);if(r.y<=r.ty){burst(r.x,r.y);return false}return true});
+ parts=parts.filter(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.05*devicePixelRatio;p.vx*=.985;p.vy*=.985;p.l-=.012;cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,1.8*devicePixelRatio,0,7);cx.fill();return p.l>0});
+ cx.globalAlpha=1;requestAnimationFrame(loop)})();
+
+/* ================= GAME STATE ================= */
+const $=id=>document.getElementById(id);
+let level='easy', player='', qs=[], idx=0, score=0, hintLeft=1, hintNow=false, results=[], streak=0, best=0, answered=false, bumperRes='skipped', bq=null, lastId=null;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>(Math.round(n*2)/2).toString().replace('.5','½').replace(/^0½/,'½');
+function show(id){['start','quiz','offer','results'].forEach(s=>$(s).classList.toggle('hidden',s!==id));$(id).classList.remove('fade');void $(id).offsetWidth;$(id).classList.add('fade');scrollTo({top:0,behavior:'smooth'})}
+
+document.querySelectorAll('.lvl').forEach(b=>b.onclick=()=>{SFX.click();document.querySelectorAll('.lvl').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');level=b.dataset.l});
+try{const n=localStorage.getItem('dd_name');if(n)$('name').value=n}catch(e){}
+$('name').addEventListener('keydown',e=>{if(e.key==='Enter')$('goBtn').click()});
+
+$('goBtn').onclick=()=>{
+ const n=$('name').value.trim();
+ if(!n){$('nameErr').textContent='Enter your name to light the first diya 🪔';$('name').focus();SFX.wrong();return}
+ $('nameErr').textContent='';player=n;try{localStorage.setItem('dd_name',n)}catch(e){}
+ ac();SFX.boom();launch(3);
+ qs=shuffle(Q[level]).map(q=>{const order=shuffle([0,1,2,3]);return{...q,o:order.map(i=>q.o[i]),a:order.indexOf(q.a)}});
+ idx=0;score=0;hintLeft=1;results=[];streak=0;best=0;bumperRes='skipped';
+ $('lvlPill').textContent=LEVELS[level].e+' '+LEVELS[level].n;
+ $('track').innerHTML=qs.map(()=>'<div class="dot"></div>').join('');
+ show('quiz');renderQ();
+};
+
+function renderQ(){
+ const q=qs[idx];answered=false;hintNow=false;
+ $('qNum').textContent=`Q ${idx+1}/20`;$('scorePill').textContent='⭐ '+fmt(score);
+ [...$('track').children].forEach((d,i)=>{d.className='dot'+(results[i]==='ok'?' ok':results[i]==='half'?' half':results[i]==='bad'?' bad':i===idx?' cur':'')});
+ $('qCat').textContent=q.c;$('qText').textContent=q.q;
+ $('opts').innerHTML=q.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('');
+ $('opts').querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+ $('hintBox').classList.add('hidden');$('factBox').innerHTML='';$('nextBtn').classList.add('hidden');
+ updHint();
+ $('qBody').classList.remove('fade');void $('qBody').offsetWidth;$('qBody').classList.add('fade');
+}
+function updHint(){const b=$('hintBtn');b.classList.remove('hidden');b.disabled=hintLeft<1||answered;b.style.opacity=b.disabled?.4:1;b.textContent=hintLeft?'💡 Use hint (1 left)':'💡 Hint used'}
+$('hintBtn').onclick=()=>{if(hintLeft<1||answered)return;hintLeft=0;hintNow=true;SFX.hint();$('hintBox').innerHTML='💡 <b>Hint:</b> '+esc(qs[idx].h)+' <i>(correct now = ½ point)</i>';$('hintBox').classList.remove('hidden');updHint()};
+
+const CHEERS=['Shabaash! 🎉','Ekdum sahi! ✨','Kya baat hai! 🪔','Superb! 🎇','Wah! 🌟','Bilkul correct! 🎆'];
+const OOPS=['Arre yaar! 😅','Oops – patakha fizzled 🧨','So close! 🙈','Not quite! 🫣'];
+function answer(i){
+ if(answered)return;answered=true;const q=qs[idx],ok=i===q.a,btns=$('opts').querySelectorAll('.opt');
+ btns.forEach(b=>b.disabled=true);btns[q.a].classList.add('right');
+ let pts=0;
+ if(ok){pts=hintNow?.5:1;score+=pts;results[idx]=hintNow?'half':'ok';streak++;best=Math.max(best,streak);SFX.correct();
+   const r=btns[i].getBoundingClientRect();burst((r.left+r.width/2)*devicePixelRatio,(r.top)*devicePixelRatio,45);
+   if(streak>=3&&streak%3===0){setTimeout(()=>{SFX.boom();launch(4);pop(streak>=9?`🔥 ${streak} in a row – unstoppable!`:streak>=6?`🎆 ${streak} streak – Dhamaka!`:`🎇 Hat-trick!`)},350)}
+ }else{results[idx]='bad';streak=0;btns[i].classList.add('wrong');SFX.wrong()}
+ $('factBox').innerHTML=`<div class="fact ${ok?'good':'bad'}"><b>${ok?CHEERS[Math.random()*CHEERS.length|0]+(pts===.5?' (+½ with hint)':' (+1)'):OOPS[Math.random()*OOPS.length|0]+' Answer: '+esc(q.o[q.a])}</b>${esc(q.f)}</div>`;
+ $('scorePill').textContent='⭐ '+fmt(score);
+ $('track').children[idx].className='dot '+results[idx];
+ updHint();$('nextBtn').textContent=idx<19?'Next ➜':'Finish 🎉';$('nextBtn').classList.remove('hidden');
+}
+$('nextBtn').onclick=()=>{SFX.click();if(idx<19){idx++;renderQ()}else{ $('offerScore').textContent=fmt(score);show('offer');SFX.fuse()}};
+function pop(t){const s=$('streak');s.textContent=t;s.classList.remove('show');void s.offsetWidth;s.classList.add('show')}
+
+$('skipBtn').onclick=()=>{SFX.click();bumperRes='skipped';finish()};
+$('takeBtn').onclick=()=>{
+ SFX.fuse();const b=BUMPER[Math.random()*BUMPER.length|0],order=shuffle([0,1,2,3]);bq={...b,o:order.map(i=>b.o[i]),a:order.indexOf(b.a)};
+ show('quiz');answered=false;
+ $('qNum').textContent='💣 BUMPER';$('qCat').textContent=bq.c+' · +5 / −2';$('qText').textContent=bq.q;
+ [...$('track').children].forEach((d,i)=>d.className='dot '+results[i]);
+ $('opts').innerHTML=bq.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('');
+ $('hintBox').classList.add('hidden');$('factBox').innerHTML='';$('hintBtn').classList.add('hidden');$('nextBtn').classList.add('hidden');
+ $('opts').querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{
+   if(answered)return;answered=true;const i=+btn.dataset.i,ok=i===bq.a,bs=$('opts').querySelectorAll('.opt');bs.forEach(x=>x.disabled=true);bs[bq.a].classList.add('right');
+   if(ok){score+=5;bumperRes='won';SFX.fanfare();launch(6);pop('💥 BUMPER BLAST! +5')}else{score-=2;bumperRes='lost';bs[i].classList.add('wrong');SFX.wrong();pop('💨 Fizzle… −2')}
+   $('scorePill').textContent='⭐ '+fmt(score);
+   $('factBox').innerHTML=`<div class="fact ${ok?'good':'bad'}"><b>${ok?'Bumper cracked! +5 points':'Bumper bombed! −2 points. Answer: '+esc(bq.o[bq.a])}</b>${esc(bq.f)}</div>`;
+   $('nextBtn').textContent='See my score 🎉';$('nextBtn').classList.remove('hidden');$('nextBtn').onclick=()=>{SFX.click();$('nextBtn').onclick=nextDefault;finish()};
+ });
+};
+const nextDefault=$('nextBtn').onclick;
+
+function finish(){
+ const correct=results.filter(r=>r!=='bad').length;
+ $('finalScore').textContent=fmt(score);
+ const pct=score/20;
+ const [t,m]= pct>=1.1?['👑 Deepavali Samrat','You out-shone every diya in the room!']
+  :pct>=.85?['🚀 Rocket Raja/Rani','Sky-high knowledge – the aunties are impressed.']
+  :pct>=.65?['🎇 Anaar Ace','A brilliant fountain of facts!']
+  :pct>=.4?['✨ Phuljhadi Pro','Sparkly effort – a few more laddoos and you\'ll be unbeatable.']
+  :['🧨 Sutli Bomb in training','Every expert started with a single diya. Try again!'];
+ $('finalTitle').textContent=t;$('finalMsg').textContent=`${player}, ${m}`;
+ $('stCorrect').textContent=correct+'/20';$('stStreak').textContent=best;
+ $('stBumper').textContent=bumperRes==='won'?'+5 💥':bumperRes==='lost'?'−2 💨':'Skipped';
+ show('results');pct>=.4?(SFX.fanfare(),launch(5)):SFX.sad();
+ saveScore({name:player.slice(0,24),level,score:Math.round(score*2)/2,correct,bumper:bumperRes,hint:hintLeft===0,ts:Date.now()});
+}
+$('againBtn').onclick=()=>{SFX.click();show('start')};
+
+/* ================= LEADERBOARD (Google Sheet) ================= */
+/* 👇 PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE QUOTES 👇 */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhIyRlWFHq21jPvg6N5vz-s1WoNP6Y3MVPZlNTsXFgK7dTFZ5MKYeEZsA2W-WZWCc/exec";
+/* 👆 ------------------------------------------------------------ 👆 */
+const ONLINE = /^https:\/\/script\.google\.com\/macros\/s\//.test(SCRIPT_URL);
+let remote=[], local=[], pending=[], filt='all', state=ONLINE?'connecting':'local', pollT=null;
+try{local=JSON.parse(localStorage.getItem('dd_scores')||'[]')}catch(e){local=[]}
+try{pending=JSON.parse(localStorage.getItem('dd_pending')||'[]')}catch(e){pending=[]}
+function saveLocal(){try{localStorage.setItem('dd_scores',JSON.stringify(local.slice(-200)));localStorage.setItem('dd_pending',JSON.stringify(pending))}catch(e){}}
+
+async function postScore(e){
+ const r=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(e)}); // text/plain → no CORS preflight
+ const j=await r.json(); if(!j.ok) throw new Error(j.error||'save failed');
+}
+async function flushPending(){
+ if(!ONLINE||!pending.length)return;
+ for(const e of pending.slice()){
+   try{await postScore(e);pending=pending.filter(p=>p.id!==e.id);saveLocal()}catch(err){break}
+ }
+}
+async function saveScore(e){
+ e.id='s'+e.ts.toString(36)+Math.random().toString(36).slice(2,7);lastId=e.id;
+ local.push(e);
+ if(ONLINE){pending.push(e);saveLocal();renderAll();await flushPending();fetchScores()}
+ else{saveLocal();renderAll()}
+}
+async function fetchScores(){
+ if(!ONLINE)return;
+ try{
+   const r=await fetch(SCRIPT_URL+'?t='+Date.now());const j=await r.json();
+   if(j.ok){remote=j.scores||[];state='live'}
+ }catch(err){if(state!=='live')state='offline'}
+ renderAll();
+}
+function allScores(){const m=new Map();remote.forEach(r=>m.set(r.id,r));local.forEach(r=>{if(!m.has(r.id)&&(state!=='live'||pending.some(p=>p.id===r.id)))m.set(r.id,r)});return [...m.values()]}
+function tableHTML(f,max){
+ const rows=allScores().filter(r=>f==='all'||r.level===f).sort((a,b)=>b.score-a.score||a.ts-b.ts).slice(0,max);
+ return rows.length?`<table><thead><tr><th>#</th><th>Player</th><th>Level</th><th style="text-align:right">Score</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="${r.id===lastId?'me':''}"><td class="r">${i<3?['🥇','🥈','🥉'][i]:i+1}</td><td>${esc(r.name)}${r.bumper==='won'?' 💥':''}</td><td>${(LEVELS[r.level]||{e:''}).e} ${esc((LEVELS[r.level]||{n:r.level}).n)}</td><td class="s">${fmt(+r.score)}</td></tr>`).join('')}</tbody></table>`
+  :'<div class="empty">No scores yet – be the first to light it up! 🪔</div>';
+}
+function noteText(){
+ return state==='live'?'🟢 Live party leaderboard – updates every 20 seconds. 💥 = cracked the bumper.'
+  :state==='connecting'?'⏳ Connecting to the party leaderboard…'
+  :state==='offline'?'⚠️ Can\'t reach the party leaderboard right now – your score is saved and will be sent when the connection is back.'
+  :'Scores are saved on this device only (party leaderboard not set up yet).';
+}
+function renderLB(){$('lbBody').innerHTML=tableHTML(filt,50);$('lbNote').textContent=noteText()}
+function renderTV(){if($('tv').classList.contains('hidden'))return;$('tvBody').innerHTML=tableHTML('all',15);$('tvNote').textContent=noteText()}
+function renderAll(){renderLB();renderTV()}
+function startPoll(ms){stopPoll();fetchScores();pollT=setInterval(()=>{flushPending();fetchScores()},ms)}
+function stopPoll(){if(pollT)clearInterval(pollT);pollT=null}
+function openLB(){SFX.click();renderLB();$('lbModal').classList.remove('hidden');if(ONLINE)startPoll(20000)}
+function closeLB(){$('lbModal').classList.add('hidden');stopPoll()}
+$('lbBtn').onclick=openLB;$('lbBtn2').onclick=openLB;
+$('lbClose').onclick=closeLB;
+$('lbModal').onclick=e=>{if(e.target.id==='lbModal')closeLB()};
+$('lbTabs').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{$('lbTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');filt=t.dataset.f;renderLB()});
+
+/* ================= QR + TV MODE ================= */
+const playUrl=()=>location.href.split('#')[0];
+function qrSVG(text){try{const q=qrcode(0,'M');q.addData(text);q.make();return q.createSvgTag({cellSize:6,margin:2,scalable:true})}catch(e){return '<div style="color:#000">QR unavailable</div>'}}
+$('qrBtn').onclick=()=>{SFX.click();$('qrBox').innerHTML=qrSVG(playUrl());$('qrUrl').textContent=playUrl();$('qrModal').classList.remove('hidden')};
+$('qrClose').onclick=()=>$('qrModal').classList.add('hidden');
+$('qrModal').onclick=e=>{if(e.target.id==='qrModal')$('qrModal').classList.add('hidden')};
+function route(){
+ const tv=location.hash==='#board';
+ $('tv').classList.toggle('hidden',!tv);document.querySelector('.wrap').classList.toggle('hidden',tv);
+ if(tv){$('tvQr').innerHTML=qrSVG(playUrl());renderTV();startPoll(15000)}else if($('lbModal').classList.contains('hidden'))stopPoll();
+}
+addEventListener('hashchange',route);
+
+$('muteBtn').textContent=muted?'🔇':'🔊';
+$('muteBtn').onclick=()=>{muted=!muted;$('muteBtn').textContent=muted?'🔇':'🔊';try{localStorage.setItem('dd_muted',muted?'1':'0')}catch(e){};if(!muted)SFX.click()};
+
+route();flushPending();
+
+</script>
+</body>
+</html>
